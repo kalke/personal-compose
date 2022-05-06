@@ -12,9 +12,9 @@ services:
       - db_sharing
     command: --sql_mode=""
 
-  redshift-local:
+  postgres-local:
     image: postgres
-    container_name: redshift-local
+    container_name: postgres-local
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
