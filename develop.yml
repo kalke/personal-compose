@@ -11,6 +11,7 @@ services:
     networks:
       - db_sharing
     command: --sql_mode=""
+    restart: unless-stopped
 
   postgres-local:
     image: postgres
@@ -23,6 +24,7 @@ services:
       - 5432:5432
     networks:
       - db_sharing
+    restart: unless-stopped
     
   mongo:
     image: mongo
