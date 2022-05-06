@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+  mysql-local:
+    image: mysql:5.7
+    container_name: mysql-local
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306
+    networks:
+      - db_sharing
+    command: --sql_mode=""
+
+  redshift-local:
+    image: postgres
+    container_name: redshift-local
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: 'postgres'
+    ports:
+      - 5432:5432
+    networks:
+      - db_sharing
+    
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+     - 27017:27017
+    restart: unless-stopped
+
+networks:
+  db_sharing:
